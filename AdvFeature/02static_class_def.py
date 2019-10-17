@@ -39,3 +39,40 @@ du.run()
 
 #实例,类,都可以访问类方法
 du.show()
+
+
+"""
+类与对象区别
+类方法 静态方法 实例方法
+"""
+class AI(object):
+    """
+    AI类
+    """
+    def __init__(self, _speed):
+        self.speed = _speed
+    # 声明类方法run
+    def run(self):
+        print("run速度为%d" % self.speed)
+    # 声明静态方法
+    @staticmethod
+    def dead():
+        print("AI死亡")
+    # 声明类方法
+    @classmethod
+    def printclassinfo(cls):
+        print("类文档%s" % cls.__doc__)
+
+if __name__ == "__main__":
+    a1 = AI(50)
+    a1.run()
+    a1.dead()
+    a1.printclassinfo()
+    AI.dead()
+
+
+"""
+为什么要使用类属性、类方法
+为了减少多个类实例所产生的内存空间
+类方法与类属性属于类，而不属于某个实例
+"""
