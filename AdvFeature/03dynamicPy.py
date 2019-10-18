@@ -1,3 +1,4 @@
+import types
 """
 python的动态处理
 1.动态添加实例属性
@@ -33,4 +34,61 @@ print(du.name,Persion.name)
 du.mp = 100
 print(du.mp)
 
+#===================================================
+"""
+动态添加实例方法
+"""
 
+class Dog(object):
+    """这是为测试添加类方法而添加的"""
+    def __init__(self,name) -> None:
+        self._name = name
+
+    @property
+    def name(self):
+        return self._name
+
+er = Dog("Husky")
+
+print(er.name)
+
+def set_name(self,d_name):
+    self._name = d_name
+
+#动态添加实例方法需要使用types模块
+er.set_name = types.MethodType(set_name,er)
+er.set_name("TOM")
+
+print(er.name)
+
+#==========================================================
+#动态添加类方法
+
+@classmethod
+def get_cls_info(cls):
+    return cls.__doc__
+
+Dog.get_cls_info = get_cls_info
+
+info = Dog.get_cls_info()
+print(info)
+
+info2 = er.get_cls_info()
+print(info2)
+
+
+#============================================================
+
+"""动态添加静态方法"""
+
+@staticmethod
+def dog_info():
+    print("This is a class of dog;")
+
+Dog.dog_info = dog_info
+
+#类访问静态方法
+Dog.dog_info()
+
+#实例访问方法
+er.dog_info()
