@@ -1,3 +1,6 @@
+from collections import Iterable
+from collections import Iterator
+
 
 ls01 = [x for x in range(100000)]
 
@@ -44,3 +47,15 @@ def fib(times):
 
 for i in fib(5):
     print(i)
+
+print(isinstance(fib(5), Iterable))
+print(isinstance(fib(5), Iterator))
+
+
+ls03 = [1,2,3,4,5,6,7,8]
+print(isinstance(ls03,Iterable))
+print(isinstance(ls03,Iterator))
+
+#将可迭代对象转换为迭代器
+ls04 = iter(ls03)
+print(isinstance(ls04,Iterator))
