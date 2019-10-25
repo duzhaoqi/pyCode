@@ -46,6 +46,20 @@ def showdiscount():
 showlist()
 
 
+def decorCost(fun):
+    def cost():
+        start = time.time()
+        fun()
+        stop = time.time()
+        print("一共消耗时间为: {}".format(str(stop-start)))
+    return cost
+
+# todo 这是一个测试
+@decorCost
+def func01():
+    g = (x for x in range(10000000))
+    for i in g:
+        print(i)
 
 
-
+func01()
