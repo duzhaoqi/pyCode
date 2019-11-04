@@ -3,7 +3,7 @@ from threading import Thread
 
 server = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
-serveraddress = ("192.168.31.71",9001)
+serveraddress = ("127.0.0.1",9001)
 server.bind(serveraddress)
 
 buffersize = 10240

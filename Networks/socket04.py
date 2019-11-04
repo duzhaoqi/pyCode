@@ -3,7 +3,7 @@ from threading import Thread
 
 client = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
-serveraddress = ("192.168.31.71",9001)
+serveraddress = ("127.0.0.1",9001)
 
 buffersize = 10240
 
@@ -23,7 +23,6 @@ while True:
 
 
     srv_into.start()
-    srv_into.join()
     srv_get.start()
 
 
