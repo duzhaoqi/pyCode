@@ -17,7 +17,7 @@ while True:
             data = tcpCliSock.recv(bufsize)
             if not data:
                 break
-            tcpCliSock.send("[{}] {}".format(ctime(),data).encode(encoding="UTF-8"))
+            tcpCliSock.send("[{}] {}".format(ctime(),data.decode(encoding="UTF-8")).encode(encoding="UTF-8") )
     tcpCliSock.close()
 
 tcpSerSock.close()
