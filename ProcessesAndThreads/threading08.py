@@ -1,7 +1,8 @@
 from atexit import register
 from random import randrange
-from threading import Thread,currentThread
+from threading import Thread,currentThread,Lock
 from time import sleep,ctime
+lock = Lock()
 
 class CleanOutPutSet(set):
     def __str__(self):
@@ -15,17 +16,32 @@ remaining = CleanOutPutSet()
 
 def loop(sec):
     myname = currentThread().name
-    remaining.add(myname)
-    print("[{}] Started {}".format(ctime(),myname))
+
+    with lock:  #使用上下文处理同步问题
+       # lock.acquire()
+        remaining.add(myname)
+        print("[{0}] Started {1}".format(ctime(),myname))
+        #lock.release()
+
     sleep(sec)
-    remaining.remove(myname)
-    print("[{}] Completed {} ({} secs)".format(ctime(), myname, sec))
-    print("remaining: ".format(remaining or "NONE"))
+
+    with lock:
+        #lock.acquire()
+        remaining.remove(myname)
+        print("[{0}] Completed {1} ({2} secs)".format(ctime(), myname, sec))
+        #lock.release()
+
+    print("remaining: {}".format(remaining or "NONE"))
+
+
+@register
+def _atexit():
+    print("All DONE at: ",ctime())
+
 
 def _main():
     for pause in loops:
         Thread(target=loop,args=(pause,)).start()
 
-@register
-def _atexit():
-    print("All DONE at: ",ctime())
+if __name__ == "__main__":
+    _main()
