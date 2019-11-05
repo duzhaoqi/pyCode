@@ -11,7 +11,9 @@ while True:
     if not data:
         break
     tcpCliSock.send(data.encode(encoding="UTF-8"))
+
     data = tcpCliSock.recv(bufsize)
+
     if not data:
         break
     print(data.decode(encoding="UTF-8"))
