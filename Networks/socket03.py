@@ -9,16 +9,19 @@ server.bind(serveraddress)
 buffersize = 10240
 
 def wait_info():
-    recvdata, recvaddr = server.recvfrom(buffersize)
-    print("get ", recvaddr, "info \n", recvdata.decode(encoding="UTF-8"))
-    return  recvdata
+    while True:
+        #print("Waiting for message...")
+        recvdata, recvaddr = server.recvfrom(buffersize)
+        print("get ", recvaddr, "info \n", recvdata.decode(encoding="UTF-8"))
+        print("-"*20)
 
 def input_info():
-    info = input("My info :\n")
-    server.sendto(info.encode(encoding="UTF-8"), wait_info())
-    print("(信息已发送)")
+    while True:
+        info = input("\n")
+        server.sendto(info.encode(encoding="UTF-8"), ("127.0.0.1",9002))
+        print("(信息已发送)")
 
-while True:
+def main():
     srv_get = Thread(target=wait_info)
     srv_into = Thread(target=input_info)
 
@@ -26,6 +29,6 @@ while True:
     srv_into.start()
 
 
+if __name__ == "__main__":
+    main()
 
-
-print("yes,it is")
