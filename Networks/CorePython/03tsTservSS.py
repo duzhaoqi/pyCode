@@ -1,9 +1,9 @@
-from socketserver import TCPServer,StreamRequestHandler as srh
+from socketserver import TCPServer,StreamRequestHandler
 from time import ctime
 
 ADDR = ("",21322)
 
-class MyRequestHandler(srh):
+class MyRequestHandler(StreamRequestHandler):
     def handle(self):
         print("...connected from: ",self.client_address)
         print()
