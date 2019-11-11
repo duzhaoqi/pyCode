@@ -14,16 +14,22 @@ sub(rex,要替换的字符,要匹配的字符串,从左到右匹配几个): 使�
 finditer: 返回迭代器,每一个元素都是match对象
 """
 pattern = "hello02"
-restr = "hello02gtglkdshello02rfgthello02tg43"
+restr = "Hello02gtglkdshello02rfgthello02tg43"
 
 def my_re(pattern,restr):
-    #re_get = re.match(pattern,restr)
+    re_get = re.match(pattern,restr,flags=re.I)
     #re_get = re.search(pattern, restr)
     #re_get = re.findall(pattern, restr)
-    re_get = re.sub(pattern,"MM",restr,1)
-    re_get = re.finditer() ##返回迭代器,每一个元素都是match对象
-    #x = re_get.group()
+    #re_get = re.sub(pattern,"MM",restr,1)
+    #re_get = re.finditer() ##返回迭代器,每一个元素都是match对象
+    x = re_get.group()
     print(re_get)
-    #print(x)
+    print(x)
 
 my_re(pattern,restr)
+
+
+# rex = re.compile("hello02")
+# x = rex.search(restr)
+#
+# print(x.group())
