@@ -26,10 +26,22 @@ def my_re(pattern,restr):
     print(re_get)
     print(x)
 
-my_re(pattern,restr)
+#my_re(pattern,restr)
 
 
 # rex = re.compile("hello02")
 # x = rex.search(restr)
 #
 # print(x.group())
+
+
+test = "gehaosd,ferloqeosdfmleeloveexx"
+rex = "(l.{2}e).*(l.{2}e)"
+try:
+    x = re.search(rex,test)
+    print(x.group(2))
+
+    result = re.match(r"(?P<hname>)hello(?P=hname)", "hello world hello china")
+    print(result.group(), result.group("hname"))
+except Exception:
+    print("Error!")
