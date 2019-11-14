@@ -33,3 +33,27 @@ x2 = bool(re.match(r'''(?x)
 
 print(x1,x2)
 
+
+#正向前视断言,匹配"是"
+f1 = re.findall(r'\w+(?= van Rossum)',
+    '''
+    Guido van Rossum
+    Tim Peters
+    Alex Martelli
+    Just van Rossum
+    Raymond Hettinger
+    ''')
+
+print(f1)
+
+#负向前视断言,匹配"非"
+f2 = re.findall(r'(?m)^\s+(?!noreply|postmaster)(\w+)',
+    '''
+    sales@phptr.com
+    postmaster@phptr.com
+    eng@phptr.com
+    noreply@phptr.com
+    admin@phptr.com
+    ''')
+
+print(f2)
